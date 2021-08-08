@@ -37,6 +37,7 @@
 <body data-home-page="index.php" data-home-page-title="Anasayfa" class="u-body">
     <main>
         <!--  TODO header gelecek -->
+        @include('header')
         <section class="u-clearfix u-section-1" id="carousel_4587">
             <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-lg u-valign-top-xl u-sheet-1">
                 <div id="carousel-8d1d" data-interval="5000" data-u-ride="carousel" class="u-carousel u-expanded-width u-slider u-slider-1">

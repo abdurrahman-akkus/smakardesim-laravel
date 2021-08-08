@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnaGiris;
+use App\Http\Controllers\BizKimiz;
+use App\Http\Controllers\Iletisim;
+use App\Http\Controllers\Cocugumuz;
+use App\Http\Controllers\Cocuklarimiz;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +19,10 @@ use App\Http\Controllers\AnaGiris;
 */
 
 Route::get('/', [AnaGiris::class, 'Sayfa']);
+Route::get('/biz-kimiz', [BizKimiz::class, 'Sayfa']);
+Route::get('/iletisim', [Iletisim::class, 'Sayfa']);
+Route::get('/cocugumuz', [Cocugumuz::class, 'Sayfa']);
+Route::get('/cocuklarimiz', [Cocuklarimiz::class, 'Sayfa']);
 
 Route::get('/yonetim', function () {
     return view('welcome');
