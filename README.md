@@ -1,9 +1,12 @@
 ## SMA Kardeşim Hakkında 
 
 SMA Kardeşim projesi valilik onaylı bağış toplama kampanyası yürüten SMA hastası 
-çocukların, 
+çocukların,
+
 i. bilgilerinin bağışçı adayları tarafından görülebilmesini, 
+
 ii. bağısçının çocuğu SMA Kardeşi olarak belirleyerek destekçiliğini belirtmesini, 
+
 iii. kardeş olan bağışçının web sitesi aracılığyla oluşturulan “Farkındalık Belgesi” ile 
 ödüllendirilerek sosyal medyada paylaşmasının teşvik edilmesini amaçlar.
 
