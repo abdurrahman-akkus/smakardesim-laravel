@@ -1,0 +1,43 @@
+main {
+    background: linear-gradient(127deg, rgba(240, 181, 207, 1) 0%, rgba(11, 64, 212, 1) 100%);
+    min-height: 100vh;
+}
+
+.tek-cocuk-resim {
+    width: 570px;
+    height: 380px;
+}
+
+
+.img-container {
+    background-color: red;
+    position: relative;
+    width: 100%;
+    padding-top: 50%;
+    /* 1:1 Aspect Ratio */
+}
+
+.hidden-scroll-bar {
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.message-return {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 20px 0px 20px 0px;
+    border: none;
+}
+
+.message-return-success {
+    background: #0C8383;
+}
+
+.message-return-error {
+    background: #FF1010;
+}
