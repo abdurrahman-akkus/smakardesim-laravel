@@ -58,7 +58,7 @@ function yuzdeRozeti($value)
    </head>
    <body class="u-body">
       <main>
-         <?php include "header.php"; ?>
+         @include('header')
          <div class="content home">
             <h3 class="baslik">TÜM ÇOCUKLARIMIZ</h3>
             <div class="arama row">
