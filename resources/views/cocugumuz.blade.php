@@ -1,8 +1,5 @@
-<?php include 'util/connect.php'; ?>
 <?php
-$id = isset($_GET['id']) ? $_GET['id'] : 1;
-$cocuk = $db->query("SELECT * FROM cocuk WHERE id = '{$id}'")->fetch(PDO::FETCH_ASSOC);
-$bankalar = $db->query("SELECT * FROM bankaBilgileri WHERE cocuk_id = '{$id}'");
+use App\Utils\Cryptologist;
 ?>
 
 <?php
@@ -32,29 +29,27 @@ function yuzdeRozeti($value)
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <link rel="icon" type="image/png" href="images/smaKardesimLogo.svg"/>
+    <link rel="icon" type="image/png" href="/images/smaKardesimLogo.svg"/>
     <title>İsim Soyisim</title>
-    <link rel="stylesheet" href="css/nicepage.css" media="screen">
-    <link rel="stylesheet" href="css/cocuklarimiz.css" media="screen">
-    <link rel="stylesheet" href="css/custom.css" media="screen">
-    <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
+    <link rel="stylesheet" href="{{ asset('css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/cocuklarimiz.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/anasayfa.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/card/main.css') }}" media="screen">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="css/anasayfa.css" media="screen">
-    <link rel="stylesheet" href="css/card/main.css" media="screen">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
+
+    <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
     <script type="application/ld+json">
         {
             "@context": "http://schema.org",
             "@type": "Organization",
             "name": "SMA Kardeşim",
             "url": "index.php",
-            "logo": "images/default-logo.png"
+            "logo": "/images/smaKardesimLogo.svg"
         }
     </script>
 
@@ -71,11 +66,11 @@ function yuzdeRozeti($value)
     <main>
         @include('header')
         <section class="u-clearfix u-section-3" id="sec-468f">
-            <h1 class="u-text u-title"><?= $cocuk["ad"] ?></h1>
+            <h1 class="u-text u-title">{{$cocuk->ad}}</h1>
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="<?= $cocuk["resim_url"] ?>" class="w-100">
+                        <img src="{{$cocuk->resim_url}}" class="w-100">
                         <div class="d-flex justify-content-between mt-2">
                             <!-- modal  -->
                             <!-- Button trigger modal -->
@@ -99,15 +94,15 @@ function yuzdeRozeti($value)
                                             </div>
                                             <div id="card-container" class="row mt-5">
                                                 <div class="">
-                                                    <img id="card-image" class="img-fluid" src="<?= $cocuk["resim_url"] ?>" />
-                                                    <img src="./images/smaKardesimLogo.svg" id="card-logo">
+                                                    <img id="card-image" class="img-fluid" src="{{$cocuk->resim_url}}" />
+                                                    <img src="/images/smaKardesimLogo.svg" id="card-logo">
                                                     <p id="card-msg">
                                                         Ben <span id="card-title" class="card-font text-center">*********</span> olarak
-                                                        <span class="card-font"><?= $cocuk["ad"] ?></span> isimli çocuğumuzu SMA KARDEŞİM
+                                                        <span class="card-font">{{$cocuk->ad}}</span> isimli çocuğumuzu SMA KARDEŞİM
                                                         olarak seçtim ve destek vererek kardeş oldum. Sizde destek verip kardeş olmak istiyorsanız. <a class="card-font" href="smakardesim.com">smakardesim.com</a>'a giderek
                                                         çocuklarımıza destek vererek kardeş olabilirsiniz.
                                                     </p>
-                                                    <img src="./images/qrCodesmakardesim.png" id="qr-code">
+                                                    <img src="/images/qrCodesmakardesim.png" id="qr-code">
                                                 </div>
                                             </div>
                                         </div>
@@ -123,8 +118,8 @@ function yuzdeRozeti($value)
 
 
                             <div class="p-2 rounded bg-info text-light">
-                                <img src="images/kardes.svg" width="20" height="20" alt="">
-                                <span class="kardes-sayisi"><?= $cocuk["kardes_sayisi"] ?> </span>Kardeş
+                                <img src="/images/kardes.svg" width="20" height="20" alt="">
+                                <span class="kardes-sayisi">{{$cocuk->kardes_sayisi}} </span>Kardeş
                             </div>
                         </div>
                         <div hidden class="fb-share-button" data-href="https://smakardesim.com.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small">
@@ -137,41 +132,40 @@ function yuzdeRozeti($value)
                         <table class="table table-striped text-light">
                             <tr>
                                 <td>Yetkili Adı</td>
-                                <td><span id="yetkili_adi"><?= $cocuk["yetkili_adi"] ?></span> <span id="yetkili_soyadi"><?= $cocuk["yetkili_soyadi"] ?></span></td>
+                                <td><span id="yetkili_adi">{{$cocuk->yetkili_adi}}</span> <span id="yetkili_soyadi">{{$cocuk->yetkili_soyadi}}</span></td>
                             </tr>
                             <tr>
                                 <td>Faaliyet No</td>
-                                <td><span id="faaliyet_no"><?= $cocuk["faaliyet_no"] ?></span> <button class="btn btn-info" onclick="valilikİzinKontrol()" data-toggle="modal" data-target="#valilik_izni_modal">SORGULA</button></td>
+                                <td><span id="faaliyet_no">{{$cocuk->faaliyet_no}}</span> <button class="btn btn-info" onclick="valilikİzinKontrol()" data-toggle="modal" data-target="#valilik_izni_modal">SORGULA</button></td>
                             <tr>
                                 <td>İletişim</td>
-                                <td><?= $cocuk["iletisim"] ?></td>
+                                <td>{{$cocuk->iletisim}}</td>
                             </tr>
                             <tr>
                                 <td>SMA Tipi</td>
-                                <td><?= $cocuk["sma_tip"] ?></td>
+                                <td>{{$cocuk->sma_tip}}</td>
                             </tr>
                             <tr>
                                 <td>Valilik İzni Başlangıç-Bitiş Tarihi</td>
-                                <td><?= DateTime::createFromFormat($orijinalFormat, $cocuk["valilik_izin_baslangic"])->format("d.m.Y")
-                                        . "-" . DateTime::createFromFormat($orijinalFormat, $cocuk["valilik_izin_bitis"])->format("d.m.Y") ?></td>
+                                <td>{{DateTime::createFromFormat($orijinalFormat, $cocuk->valilik_izin_baslangic)->format("d.m.Y")
+                                        . "-" . DateTime::createFromFormat($orijinalFormat, $cocuk->valilik_izin_bitis)->format("d.m.Y") }}</td>
                             </tr>
                             <tr>
                                 <td>Toplanacak Miktar</td>
-                                <td><?= $cocuk["toplanacak"] . $cocuk["birim"] ?></td>
+                                <td>{{$cocuk->toplanacak}}{{$cocuk->birim}}</td>
                             </tr>
                             <tr>
                                 <td>Toplanan Miktar</td>
-                                <td><?= $cocuk["toplanan"] . $cocuk["birim"] ?>
-                                    <span class="badge <?php echo yuzdeRozeti($cocuk["yuzde"]) ?>"><?= "%" . $cocuk["yuzde"] ?></span>
+                                <td>{{$cocuk->toplanan}}{{$cocuk->birim}}
+                                    <span class="badge {{ yuzdeRozeti($cocuk->yuzde)}}">{{ '%' . $cocuk->yuzde }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Son Güncelleme Tarihi</td>
-                                <td><?= DateTime::createFromFormat($orijinalZamanDamgasiFormat, $cocuk["guncelleme_ani"])->format("d.m.Y H:i:s") ?></td>
+                                <td>{{ DateTime::createFromFormat($orijinalZamanDamgasiFormat, $cocuk->guncelleme_ani)->format("d.m.Y H:i:s") }}</td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    <table class="table table-striped table-info">
+                                <td colspan="2"><table class="table table-striped table-info">
                                         <thead>
                                             <tr>
                                                 <th>Banka Adı</th>
@@ -180,23 +174,19 @@ function yuzdeRozeti($value)
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            while ($banka = $bankalar->fetch(PDO::FETCH_ASSOC)) {
-                                            ?>
+                                            @foreach ($bankalar as $banka)
                                                 <tr>
-                                                    <td><?= $banka["banka"] ?></td>
-                                                    <td><?= $banka["birim"] ?></td>
+                                                    <td>{{ $banka->banka }}</td>
+                                                    <td>{{ $banka->birim }}</td>
                                                     <td class="kopyalanabilir" data-bs-toggle="tooltip" data-bs-placement="top" title="Kopyalamak için tıklayınız" onload="tooltipTetikle($(this))">
                                                         <div class="d-flex iban-container">
-                                                            <span><?= $banka["iban"] ?> </span>&nbsp;
+                                                            <span>{{ $banka->iban }} </span>&nbsp;
                                                             <button class="btn btn-light d-inline kopyalanabilir"><i class="fas fa-copy"></i></button>
                                                         </div>
                                                     </td>
-                                                    <td hidden=""><input type="text" class="iban-input" value="<?= $banka["iban"] ?>"></td>
+                                                    <td hidden=""><input type="text" class="iban-input" value="{{ $banka->iban }}"></td>
                                                 </tr>
-                                            <?php
-                                            }
-                                            ?>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </td>
@@ -206,44 +196,42 @@ function yuzdeRozeti($value)
                 </div>
 
                 <div class="row text-light mt-4">
-                    <?php if (!empty($cocuk["hastalik_raporu_url"]) || !empty($cocuk["valilik_izni_url"])) { ?>
+                    @if (!empty($cocuk->hastalik_raporu_url) || !empty($cocuk->valilik_izni_url))
                         <h3 class="mt-4">Dokümanlar</h3>
                         <ul>
-
-                            <?php if (!empty($cocuk["hastalik_raporu_url"])) { ?>
+                            @if (!empty($cocuk->hastalik_raporu_url))
                                 <li class="mx-4 belge-link"><a href="#hastalik_raporu">Hastalık Raporuna Git</a></li>
-                            <?php } ?>
+                            @endif
 
-                            <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
+                            @if (!empty($cocuk->valilik_izni_url))
                                 <li class="mx-4 belge-link"><a href="#valilik_izni">Valilik İzin Belgesi'ne Git</a></li>
-                            <?php } ?>
+                            @endif
                         </ul>
-                    <?php } ?>
+                    @endif
 
                     <h3 class="mt-4">Detaylı Bilgi</h3>
-                    <article id="expalaination"><?= $cocuk["aciklama"] ?></article>
-                    <?php if (!empty($cocuk["hastalik_raporu_url"])) {  ?>
-                        <a href="<?= $cocuk["hastalik_raporu_url"] ?>" class="mt-4">Hastalık Raporu <i class="fas fa-download"></i></a><!-- TODO: Telefonda indirmek istiyor -->
-                        <?php if ($cocuk["hastalik_raporu_turu"] == "pdf") { ?>
+                    <article id="expalaination">{!! $cocuk->aciklama !!}</article>
+                    @if (!empty($cocuk->hastalik_raporu_url))
+                        <a href="{{ $cocuk->hastalik_raporu_url }}" class="mt-4" target="_blank">Hastalık Raporu <i class="fas fa-download"></i></a><!-- TODO: Telefonda indirmek istiyor -->
+                        @if ($cocuk->hastalik_raporu_turu == "pdf")
                             <div style="height: 500px;margin-bottom: 50px;">
-                                <iframe id="hastalik_raporu" src="<?= $cocuk["hastalik_raporu_url"] ?>" width="100%" height="500px"></iframe>
+                                <iframe id="hastalik_raporu" src="{{ $cocuk->hastalik_raporu_url }}" width="100%" height="500px"></iframe>
                             </div>
-                        <?php } else { ?>
-                            <img src="<?= $cocuk["hastalik_raporu_url"] ?>" alt="<?= $cocuk["ad"] ?> Hastalık Raporu">
-                    <?php }
-                    } ?>
+                        @else
+                            <img src="{{ $cocuk->hastalik_raporu_url }}" alt="{{ $cocuk->ad }} Hastalık Raporu">
+                        @endif
+                    @endif
 
-                    <?php if (!empty($cocuk["valilik_izni_url"])) { ?>
-                        <a href="<?= $cocuk["valilik_izni_url"] ?>" class="mt-4">Valilik İzin Belgesi <i class="fas fa-download"></i></a>
-                        <?php if ($cocuk["valilik_izin_turu"] == "pdf") {
-                        ?>
+                    @if (!empty($cocuk->valilik_izni_url))
+                        <a href="{{ $cocuk->valilik_izni_url }}" class="mt-4" target="_blank">Valilik İzin Belgesi <i class="fas fa-download"></i></a>
+                        @if ($cocuk->valilik_izin_turu == "pdf")
                             <div style="height: 500px;margin-bottom: 50px;">
-                                <iframe id="valilik_izni" src="<?= $cocuk["valilik_izni_url"] ?>" width="100%" height="500px"></iframe>
+                                <iframe id="valilik_izni" src="{{ $cocuk->valilik_izni_url }}" width="100%" height="500px"></iframe>
                             </div>
-                        <?php } else { ?>
-                            <img src="<?= $cocuk["valilik_izni_url"] ?>" alt="<?= $cocuk["ad"] ?> Valilik İzni">
-                    <?php }
-                    } ?>
+                        @else
+                            <img src="{{ $cocuk->valilik_izni_url }}" alt="{{ $cocuk->ad }} Valilik İzni">
+                        @endif
+                    @endif
                 </div>
             </div>
         </section>
@@ -281,14 +269,13 @@ function yuzdeRozeti($value)
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
                 </div>
             </div>
         </div>
     </div>
     <div id="fb-root"></div>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.v3.3.7.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.v3.3.7.min.js') }}" defer=""></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v11.0" nonce="0UA9fOjz"></script>
     <script>
         window.fbAsyncInit = function() {
@@ -305,8 +292,8 @@ function yuzdeRozeti($value)
             FB.ui({
                 display: 'popup',
                 method: 'share',
-                href: 'http://smakardesim.com/cocugumuz.php?id=<?= $id ?>',
-                quote: '<?= $cocuk["ad"] ?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?= $cocuk["ad"] ?>\'i kardeş seçerek tedavisine destek olabilirsin.',
+                href: 'http://smakardesim.com/cocugumuz/{{Cryptologist::encrypt($id)}}',
+                quote: '{{ $cocuk->ad }} artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden {{$cocuk->ad}}\'i kardeş seçerek tedavisine destek olabilirsin.',
                 description: "Donate us, please",
 
             }, function(response) {});
@@ -329,7 +316,7 @@ function yuzdeRozeti($value)
     <!-- Sma KArdeişm ol button fonksiyonu -->
     <script>
         function kardesSayisiArttir() {
-            let cocuk = <?php echo (json_encode($cocuk)); ?>;
+            let cocuk = {!! json_encode($cocuk) !!};
             $.ajax({
                 type: "POST",
                 url: "kardes_ol.php",
@@ -342,12 +329,13 @@ function yuzdeRozeti($value)
 
         function valilikİzinKontrol() {
 
-            fetch('yonetim/valilik-izni-api.php', {
+            fetch('/valilik-izin', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        "_token": "{{ csrf_token() }}",
                         islem: "izin_kontrol",
                         dataList: JSON.stringify({
                             "FaliyetNo": $('#faaliyet_no').text(),
@@ -402,7 +390,8 @@ function yuzdeRozeti($value)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="./js/cardModalJs.js"></script>
+
+    <script type="text/javascript" src="{{ asset('js/cardModalJs.js') }}" defer=""></script>
 
     <style>
         #facebook_share_btn {
@@ -425,6 +414,7 @@ function yuzdeRozeti($value)
 
         .iban-container {
             cursor: pointer;
+            justify-content: space-between;
         }
 
         a,
