@@ -69,7 +69,7 @@ function yuzdeRozeti($value)
 
 <body class="u-body">
     <main>
-        <?php include "header.php"; ?>
+        @include('header')
         <section class="u-clearfix u-section-3" id="sec-468f">
             <h1 class="u-text u-title"><?= $cocuk["ad"] ?></h1>
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">

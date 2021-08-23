@@ -36,7 +36,7 @@
 
 <body class="u-body text-light" onload="temizle()">
     <main>
-        <?php include "header.php"; ?>
+        @include('header')
         <section class="u-align-center u-clearfix u-section-1" id="sec-9da2">
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <h1 class="u-text u-text-1">Bize Ulaşın</h1>

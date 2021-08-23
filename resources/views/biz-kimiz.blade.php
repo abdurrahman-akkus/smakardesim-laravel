@@ -37,7 +37,7 @@
 <body class="u-body">
     <main>
         <div>
-            <?php include "header.php"; ?>
+            @include('header')
             <section class="u-align-left u-clearfix u-section-1" id="sec-de68" style="color: #fff;">
                 <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                     <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
