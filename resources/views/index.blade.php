@@ -1,3 +1,7 @@
+<?php
+use App\Utils\Cryptologist;
+?>
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 
@@ -40,22 +44,6 @@
         <section class="u-clearfix u-section-1" id="carousel_4587">
             <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-lg u-valign-top-xl u-sheet-1">
                 <div id="carousel-8d1d" data-interval="5000" data-u-ride="carousel" class="u-carousel u-expanded-width u-slider u-slider-1">
-                    <!--ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
-                        <li data-u-target="#carousel-8d1d" class="<?php if(1==1) echo "u-active"; /*TODO*/?> u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="<?="" /*TODO slayt sırası*/ ?>" style="width: 10px; height: 10px;"></li>
-                    </ol>
-                    <div class="u-carousel-inner" role="listbox">
-                        <div class='<?php if(1==1) echo "u-active";/*TODO*/ ?> u-carousel-item u-container-style u-slide'>
-                            <div class="u-container-layout u-valign-top u-container-layout-1">
-                                <div class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-1">
-                                    <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz.php?id=cocukId">ad <i class="far fa-arrow-alt-circle-right"></i></a></h3>
-                                        <p class="u-text u-text-palette-1-base u-text-2">kisa_aciklama&nbsp;</p>
-                                    </div>
-                                </div>
-                                <img src="resim_url" alt="ad'e ait fotoğraf" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
-                            </div>
-                        </div>
-                    </div-->
                     <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
                         @for ($s = 1; $s <= sizeof($sliderCocuklar); $s++ )
                             <li data-u-target="#carousel-8d1d" @class(['u-active'=>($s==1),'u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle']) data-u-slide-to="{{$s-1}}" style="width: 10px; height: 10px;"></li>
@@ -70,7 +58,7 @@
                             <div class="u-container-layout u-valign-top u-container-layout-1">
                                 <div class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-1">
                                     <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz.php?id={{$sCocuk->id}}">{{$sCocuk->ad}} <i class="far fa-arrow-alt-circle-right"></i></a></h3>
+                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz/{{Cryptologist::encrypt($sCocuk->id)}}">{{$sCocuk->ad}} <i class="far fa-arrow-alt-circle-right"></i></a></h3>
                                         <p class="u-text u-text-palette-1-base u-text-2">{!!$sCocuk->kisa_aciklama!!}&nbsp;</p>
                                     </div>
                                 </div>
@@ -153,7 +141,7 @@
                         <?php 
                             foreach ($hedefeYaklasanlar as $hCocuk) {
                         ?>
-                        <a href="/smakardesim/cocugumuz.php?id={{$hCocuk->id}}" class="cocuk-link">
+                        <a href="/cocugumuz/{{Cryptologist::encrypt($hCocuk->id)}}" class="cocuk-link">
                             <div class="cocuk">
                                 <div class="badge-container">
                                     <span class="badge rounded-pill bg-info">{{$hCocuk->sma_tip}}</span>
@@ -187,7 +175,7 @@
                         <?php 
                             foreach ($yeniBaslayanlar as $yCocuk) {
                         ?>
-                        <a href="/smakardesim/cocugumuz.php?id={{$yCocuk->id}}" class="cocuk-link">
+                        <a href="/cocugumuz/{{Cryptologist::encrypt($yCocuk->id)}}" class="cocuk-link">
                             <div class="cocuk">
                                 <div class="badge-container">
                                     <span class="badge rounded-pill bg-info">{{$yCocuk->sma_tip}}</span>
