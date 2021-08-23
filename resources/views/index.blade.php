@@ -36,12 +36,11 @@
 
 <body data-home-page="index.php" data-home-page-title="Anasayfa" class="u-body">
     <main>
-        <!--  TODO header gelecek -->
         @include('header')
         <section class="u-clearfix u-section-1" id="carousel_4587">
             <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-lg u-valign-top-xl u-sheet-1">
                 <div id="carousel-8d1d" data-interval="5000" data-u-ride="carousel" class="u-carousel u-expanded-width u-slider u-slider-1">
-                    <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
+                    <!--ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
                         <li data-u-target="#carousel-8d1d" class="<?php if(1==1) echo "u-active"; /*TODO*/?> u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle" data-u-slide-to="<?="" /*TODO slayt sırası*/ ?>" style="width: 10px; height: 10px;"></li>
                     </ol>
                     <div class="u-carousel-inner" role="listbox">
@@ -56,6 +55,29 @@
                                 <img src="resim_url" alt="ad'e ait fotoğraf" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
                             </div>
                         </div>
+                    </div-->
+                    <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
+                        @for ($s = 1; $s <= sizeof($sliderCocuklar); $s++ )
+                            <li data-u-target="#carousel-8d1d" @class(['u-active'=>($s==1),'u-active-palette-1-base u-hover-palette-1-base u-palette-1-light-2 u-shape-circle']) data-u-slide-to="{{$s-1}}" style="width: 10px; height: 10px;"></li>
+                        @endfor 
+                    </ol>
+                    <div class="u-carousel-inner" role="listbox">
+                        <?php
+                            $counter = 1;
+                            foreach ($sliderCocuklar as $sCocuk) {
+                        ?>
+                        <div class='<?php if($counter==1) echo "u-active"; ?> u-carousel-item u-container-style u-slide'>
+                            <div class="u-container-layout u-valign-top u-container-layout-1">
+                                <div class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-container-style u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-radius-20 u-shape-round u-white u-group-1">
+                                    <div class="u-container-layout u-valign-middle u-container-layout-2">
+                                        <h3 class="u-text u-text-palette-1-base u-text-1"><a href="cocugumuz.php?id={{$sCocuk->id}}">{{$sCocuk->ad}} <i class="far fa-arrow-alt-circle-right"></i></a></h3>
+                                        <p class="u-text u-text-palette-1-base u-text-2">{!!$sCocuk->kisa_aciklama!!}&nbsp;</p>
+                                    </div>
+                                </div>
+                                <img src="{{$sCocuk->resim_url}}" alt="{{$sCocuk->ad}}'e ait fotoğraf" class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-image u-image-round u-radius-20 u-image-1" data-image-width="1000" data-image-height="1500">
+                            </div>
+                        </div>
+                        <?php $counter++;} ?>
                     </div>
                     <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-spacing-5 u-text-palette-1-base u-carousel-control-1" href="#carousel-8d1d" role="button" data-u-slide="prev">
                         <span aria-hidden="true">
@@ -101,21 +123,21 @@
                         <div class="u-align-center u-border-2 u-border-white u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-1">
                                 <img src="images/boy.svg" class="counter-icon">
-                                <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?=""/*TODO sizeof($cocuklar)*/?></h1>
+                                <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="2000">{{$cocukSayisi}}</h1>
                                 <p class="u-text u-text-2">Çocuğumuz</p>
                             </div>
                         </div>
                         <div class="u-align-center u-border-2 u-border-white u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-2">
                                 <img src="images/volunteer.svg" class="counter-icon">
-                                <h1 class="u-text u-title u-text-3" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?=""/*TODO $gonulluler*/?></h1>
+                                <h1 class="u-text u-title u-text-3" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="2000">{{$gonulluler}}</h1>
                                 <p class="u-text u-text-4">Gönüllü Kardeşimiz</p>
                             </div>
                         </div>
                         <div class="u-align-center u-border-2 u-border-white u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-3">
                                 <img src="images/peace.svg" class="counter-icon">
-                                <h1 class="u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?=""/*TODO $tamamlananlar */?></h1>
+                                <h1 class="u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="2000">{{$tamamlananlar}}</h1>
                                 <p class="u-text u-text-6">İlacına Kavuşan Çocuklarımız</p>
                             </div>
                         </div>
@@ -128,27 +150,31 @@
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="u-list u-list-1">
                     <div class="cocuklar">
-                        <a href="/smakardesim/cocugumuz.php?id=id" class="cocuk-link">
+                        <?php 
+                            foreach ($hedefeYaklasanlar as $hCocuk) {
+                        ?>
+                        <a href="/smakardesim/cocugumuz.php?id={{$hCocuk->id}}" class="cocuk-link">
                             <div class="cocuk">
                                 <div class="badge-container">
-                                    <span class="badge rounded-pill bg-info">sma_tip</span>
+                                    <span class="badge rounded-pill bg-info">{{$hCocuk->sma_tip}}</span>
                                 </div>
                                 <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                    <img src="resim_url" class="back-img">
+                                    <img src="{{$hCocuk->resim_url}}" class="back-img">
                                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                        <h3 class="u-text u-text-1">ad</h3>
-                                        <span class="cocuk-aciklama">kisa_aciklama</span>
+                                        <h3 class="u-text u-text-1">{{$hCocuk->ad}}</h3>
+                                        <span class="cocuk-aciklama">{!!$hCocuk->kisa_aciklama!!}</span>
                                     </div>
                                 </div>
                                 <div style="margin-top: -5px">
                                     <div class="a-progress orange">
-                                        <div class="a-progress-bar" val="yuzde" style="width: yuzde%; background:#f7810e;">
-                                            <div class="a-progress-value"><span>yuzde</span>%</div>
+                                        <div class="a-progress-bar" val="{{$hCocuk->yuzde}}" style="width: {{$hCocuk->yuzde}}%; background:#f7810e;">
+                                            <div class="a-progress-value"><span>{{$hCocuk->yuzde}}</span>%</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -158,28 +184,32 @@
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <div class="u-list u-list-1">
                     <div class="cocuklar">
-                        <a href="/smakardesim/cocugumuz.php?id=id" class="cocuk-link">
+                        <?php 
+                            foreach ($yeniBaslayanlar as $yCocuk) {
+                        ?>
+                        <a href="/smakardesim/cocugumuz.php?id={{$yCocuk->id}}" class="cocuk-link">
                             <div class="cocuk">
                                 <div class="badge-container">
-                                    <span class="badge rounded-pill bg-info">sma_tip</span>
+                                    <span class="badge rounded-pill bg-info">{{$yCocuk->sma_tip}}</span>
                                     <span class="badge rounded-pill bg-secondary" hidden=""><i class="fas fa-sync-alt"></i> 4g</span>
                                 </div>
                                 <div class="u-container-style back-img-container u-list-item u-repeater-item u-shading" data-image-width="2000" data-image-height="1333">
-                                    <img src="resim_url" class="back-img">
+                                    <img src="{{$yCocuk->resim_url}}" class="back-img">
                                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                                        <h3 class="u-text u-text-1">ad</h3>
-                                        <span class="cocuk-aciklama">kisa_aciklama</span>
+                                        <h3 class="u-text u-text-1">{{$yCocuk->ad}}</h3>
+                                        <span class="cocuk-aciklama">{!!$yCocuk->kisa_aciklama!!}</span>
                                     </div>
                                 </div>
                                 <div style="margin-top: -5px">
                                     <div class="a-progress orange">
-                                        <div class="a-progress-bar" val="yuzde" style="width: yuzde%; background:#f7810e;">
-                                            <div class="a-progress-value"><span>yuzde</span>%</div>
+                                        <div class="a-progress-bar" val="{{$yCocuk->yuzde}}" style="width: {{$yCocuk->yuzde}}%; background:#f7810e;">
+                                            <div class="a-progress-value"><span>{{$yCocuk->yuzde}}</span>%</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
