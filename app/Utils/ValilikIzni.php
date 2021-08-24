@@ -8,7 +8,7 @@ class ValilikIzni {
 
     {
 
-    $data = $request->json()->all();
+            $data = $request->json()->all();
             // where are we posting to?
             $url = 'https://derbis.dernekler.gov.tr/YardimToplamaYetkiliKisilerWeb/SelectYardimToplamaList';
         
