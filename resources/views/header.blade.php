@@ -22,10 +22,11 @@
             </div>
             <div class="u-custom-menu u-nav-container">
                 <ul class="u-nav u-spacing-2 u-unstyled u-nav-1">
-                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="/" style="padding: 10px 20px;">Anasayfa</a></li>
-                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="biz-kimiz" style="padding: 10px 20px;">BİZ KİMİZ</a></li>
-                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="iletisim" style="padding: 10px 20px;">İLETİŞİM</a></li>
-                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="yonetim" style="padding: 10px 20px;">GİRİŞ YAP</a></li>
+                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="/" style="padding: 10px 20px;">ANASAYFA</a></li>
+                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="/cocuklarimiz" style="padding: 10px 20px;">ÇOCUKLARIMIZ</a></li>
+                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="/biz-kimiz" style="padding: 10px 20px;">BİZ KİMİZ</a></li>
+                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="/iletisim" style="padding: 10px 20px;">İLETİŞİM</a></li>
+                    <li class="u-nav-item"><a class="u-active-palette-1-base u-border-active-palette-1-base u-border-hover-palette-1-light-1 u-button-style u-hover-palette-1-light-1 u-nav-link u-text-active-white u-text-grey-90 u-text-hover-white" href="/yonetim" style="padding: 10px 20px;">GİRİŞ YAP</a></li>
                 </ul>
             </div>
             <div class="u-custom-menu u-nav-container-collapse">
@@ -33,10 +34,11 @@
                     <div class="u-sidenav-overflow">
                         <div class="u-menu-close"></div>
                         <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/" style="padding: 10px 20px;">Anasayfa</a></li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="biz-kimiz" style="padding: 10px 20px;">BİZ KİMİZ</a></li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="iletisim" style="padding: 10px 20px;">İLETİŞİM</a></li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="yonetim" style="padding: 10px 20px;">GİRİŞ YAP</a></li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/" style="padding: 10px 20px;">ANASAYFA</a></li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/cocuklarimiz" style="padding: 10px 20px;">ÇOCUKLARIMIZ</a></li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/biz-kimiz" style="padding: 10px 20px;">BİZ KİMİZ</a></li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/iletisim" style="padding: 10px 20px;">İLETİŞİM</a></li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/yonetim" style="padding: 10px 20px;">GİRİŞ YAP</a></li>
                         </ul>
                     </div>
                 </div>

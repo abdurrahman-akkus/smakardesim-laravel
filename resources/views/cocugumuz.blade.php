@@ -39,9 +39,7 @@ function yuzdeRozeti($value)
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
-
+    
     <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
     <script type="application/ld+json">
         {
@@ -92,8 +90,7 @@ function yuzdeRozeti($value)
                                                     <input type="text" id="card-form-title" class="form-control" name="card-form-title" />
                                                 </form>
                                             </div>
-                                            <div id="card-container" class="row mt-5">
-                                                <div class="">
+                                            <div id="card-container" class="border-img row mt-5">
                                                     <img id="card-image" class="img-fluid" src="{{$cocuk->resim_url}}" />
                                                     <img src="/images/smaKardesimLogo.svg" id="card-logo">
                                                     <p id="card-msg">
@@ -103,7 +100,6 @@ function yuzdeRozeti($value)
                                                         çocuklarımıza destek vererek kardeş olabilirsiniz.
                                                     </p>
                                                     <img src="/images/qrCodesmakardesim.png" id="qr-code">
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -122,7 +118,7 @@ function yuzdeRozeti($value)
                                 <span id="kardes_sayisi">{{$cocuk->kardes_sayisi}} </span>Kardeş
                             </div>
                         </div>
-                        <div hidden class="fb-share-button" data-href="https://smakardesim.com.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small">
+                        <div hidden class="fb-share-button" data-href="https://smakardesim.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small">
                             <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a>
                         </div>
                         <button id="facebook_share_btn" class="mt-1 share-btn"><i class="fab fa-facebook"></i> Paylaş</button>
@@ -274,8 +270,9 @@ function yuzdeRozeti($value)
             </div>
         </div>
     </div>
-    <a href="http://smakardesim.com/cocugumuz/{{Cryptologist::encrypt($cocuk->id)}}">GİT</a>
     <div id="fb-root"></div>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.v3.3.7.min.js') }}" defer=""></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v11.0" nonce="0UA9fOjz"></script>
     <script>
@@ -399,10 +396,7 @@ function yuzdeRozeti($value)
     </script>
     <!-- Sma KArdeişm ol button fonksiyonu -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="{{ asset('js/cardModalJs.js') }}" defer=""></script>
 
@@ -440,7 +434,7 @@ function yuzdeRozeti($value)
             resize: none;
             line-height: 1; 
             font-size: 1rem; border: none;
-            overflow-x:scroll;
+            overflow-y:scroll;
         }
 
         a,
