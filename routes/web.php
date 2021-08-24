@@ -8,6 +8,7 @@ use App\Http\Controllers\Cocugumuz;
 use App\Http\Controllers\Cocuklarimiz;
 use App\Utils\Cryptologist;
 use App\Utils\ValilikIzni;
+use App\Services\CocukService;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('encrypt', [Cryptologist::class, 'encrypt']);
 Route::get('decrypt', [Cryptologist::class, 'decrypt']);
 
-Route::post('valilik-izin',[ValilikIzni::class, 'izinKontrol']);
+Route::post('/valilik-izin',[ValilikIzni::class, 'izinKontrol']);
+Route::get('/kardes-ol/{id}', [CocukService::class, 'kardesOl']);

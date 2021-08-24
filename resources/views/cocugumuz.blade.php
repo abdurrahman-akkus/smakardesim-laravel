@@ -119,7 +119,7 @@ function yuzdeRozeti($value)
 
                             <div class="p-2 rounded bg-info text-light">
                                 <img src="/images/kardes.svg" width="20" height="20" alt="">
-                                <span class="kardes-sayisi">{{$cocuk->kardes_sayisi}} </span>Kardeş
+                                <span id="kardes_sayisi">{{$cocuk->kardes_sayisi}} </span>Kardeş
                             </div>
                         </div>
                         <div hidden class="fb-share-button" data-href="https://smakardesim.com.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small">
@@ -179,12 +179,12 @@ function yuzdeRozeti($value)
                                                     <td>{{ $banka->banka }}</td>
                                                     <td>{{ $banka->birim }}</td>
                                                     <td class="kopyalanabilir" data-bs-toggle="tooltip" data-bs-placement="top" title="Kopyalamak için tıklayınız" onload="tooltipTetikle($(this))">
-                                                        <div class="d-flex iban-container">
-                                                            <span>{{ $banka->iban }} </span>&nbsp;
+                                                        <div class="d-flex iban-container" onclick="panoyaKopyala($(this))">
+                                                            <!--input type="text" class="iban-input" value="{{ $banka->iban }}" readonly-->
+                                                            <textarea row="1" class="iban-input" readonly>{{ $banka->iban }}</textarea>
                                                             <button class="btn btn-light d-inline kopyalanabilir"><i class="fas fa-copy"></i></button>
                                                         </div>
                                                     </td>
-                                                    <td hidden=""><input type="text" class="iban-input" value="{{ $banka->iban }}"></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -218,7 +218,7 @@ function yuzdeRozeti($value)
                                 <iframe id="hastalik_raporu" src="{{ $cocuk->hastalik_raporu_url }}" width="100%" height="500px"></iframe>
                             </div>
                         @else
-                            <img src="{{ $cocuk->hastalik_raporu_url }}" alt="{{ $cocuk->ad }} Hastalık Raporu">
+                            <img id="hastalik_raporu" src="{{ $cocuk->hastalik_raporu_url }}" alt="{{ $cocuk->ad }} Hastalık Raporu">
                         @endif
                     @endif
 
@@ -229,7 +229,7 @@ function yuzdeRozeti($value)
                                 <iframe id="valilik_izni" src="{{ $cocuk->valilik_izni_url }}" width="100%" height="500px"></iframe>
                             </div>
                         @else
-                            <img src="{{ $cocuk->valilik_izni_url }}" alt="{{ $cocuk->ad }} Valilik İzni">
+                            <img id="valilik_izni" src="{{ $cocuk->valilik_izni_url }}" alt="{{ $cocuk->ad }} Valilik İzni">
                         @endif
                     @endif
                 </div>
@@ -274,6 +274,7 @@ function yuzdeRozeti($value)
             </div>
         </div>
     </div>
+    <a href="http://smakardesim.com/cocugumuz/{{Cryptologist::encrypt($cocuk->id)}}">GİT</a>
     <div id="fb-root"></div>
     <script type="text/javascript" src="{{ asset('js/bootstrap.v3.3.7.min.js') }}" defer=""></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v11.0" nonce="0UA9fOjz"></script>
@@ -292,7 +293,7 @@ function yuzdeRozeti($value)
             FB.ui({
                 display: 'popup',
                 method: 'share',
-                href: 'http://smakardesim.com/cocugumuz/{{Cryptologist::encrypt($id)}}',
+                href: 'http://127.0.0.1:8000/cocugumuz/{{Cryptologist::encrypt($cocuk->id)}}',
                 quote: '{{ $cocuk->ad }} artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden {{$cocuk->ad}}\'i kardeş seçerek tedavisine destek olabilirsin.',
                 description: "Donate us, please",
 
@@ -300,7 +301,7 @@ function yuzdeRozeti($value)
         }
 
         function panoyaKopyala($arg) {
-            let elm = $arg.parent().find(".iban-input")[0];
+            let elm = $arg.find(".iban-input")[0];
             elm.select();
             elm.setSelectionRange(0, 99999);
             document.execCommand("copy");
@@ -316,19 +317,24 @@ function yuzdeRozeti($value)
     <!-- Sma KArdeişm ol button fonksiyonu -->
     <script>
         function kardesSayisiArttir() {
-            let cocuk = {!! json_encode($cocuk) !!};
-            $.ajax({
-                type: "POST",
-                url: "kardes_ol.php",
-                data: {
-                    cocuk: cocuk
-                }
-            })
+            let cocuk_id = '{{Cryptologist::encrypt($cocuk->id)}}';
+            fetch('/kardes-ol/'+cocuk_id, {
+                    method: "GET",
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if(data==1){
+                        $("#kardes_sayisi").text($("#kardes_sayisi").text()*1+1);
+                    }                    
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
 
         }
 
         function valilikİzinKontrol() {
-
+            $('#valilik_sorgu_tablosu tbody').html("<tr><td colspan='8' class='text-center'><i>Veriler Çekiliyor. Lütfen Bekleyiniz!</i></td></tr>");
             fetch('/valilik-izin', {
                     method: "POST",
                     headers: {
@@ -346,8 +352,14 @@ function yuzdeRozeti($value)
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+
                     $('#valilik_sorgu_tablosu tbody').html("");
+                    if(data.Data==null||data.Data.length==0) {
+                        $('#valilik_sorgu_tablosu tbody').html("<tr>"+
+                            "<td colspan='8' class='text-center'><i>Maalesef Böyle Bir Kayıt Bulunamadı.</i>"+
+                            "<a href='/iletisim'>Lütfen Bildiriniz!</a></td></tr>");
+                        return;
+                    }
                     for (datum of data.Data) {
                         $('#valilik_sorgu_tablosu tbody').append(
                             "<tr>" +
@@ -367,6 +379,7 @@ function yuzdeRozeti($value)
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+                    $('#valilik_sorgu_tablosu tbody').html("<tr><td colspan='8' class='text-center'><i>Veriler Çekilemedi. Bir Sorun Var Gibi Görünüyor!</i></td></tr>");
                 });
         }
 
@@ -415,6 +428,19 @@ function yuzdeRozeti($value)
         .iban-container {
             cursor: pointer;
             justify-content: space-between;
+        }
+        
+        .iban-input,.iban-input:focus ,.iban-input:focus-visible {
+            background-color:transparent;
+            border-color: transparent;
+            outline:transparent;
+        }
+
+        textarea.iban-input {
+            resize: none;
+            line-height: 1; 
+            font-size: 1rem; border: none;
+            overflow-x:scroll;
         }
 
         a,
