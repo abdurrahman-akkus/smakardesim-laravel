@@ -39,9 +39,7 @@ function yuzdeRozeti($value)
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
-    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
-
+    
     <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
     <script type="application/ld+json">
         {
@@ -273,6 +271,8 @@ function yuzdeRozeti($value)
         </div>
     </div>
     <div id="fb-root"></div>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.v3.3.7.min.js') }}" defer=""></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v11.0" nonce="0UA9fOjz"></script>
     <script>

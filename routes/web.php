@@ -25,7 +25,7 @@ Route::get('/', [AnaGiris::class, 'Sayfa']);
 Route::get('/biz-kimiz', [BizKimiz::class, 'Sayfa']);
 Route::get('/iletisim', [Iletisim::class, 'Sayfa']);
 Route::get('/cocugumuz/{id}', [Cocugumuz::class, 'Sayfa']);
-Route::get('/cocuklarimiz', [Cocuklarimiz::class, 'Sayfa']);
+Route::get('/cocuklarimiz/{param?}', [Cocuklarimiz::class, 'Sayfa']);
 
 //id bilgisi gelmezse cocuklarimiz'a yönlendir
 Route::redirect('/cocugumuz', '/cocuklarimiz');
