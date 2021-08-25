@@ -9,11 +9,9 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <link rel="icon" type="image/png" href="images/smaKardesimLogo.svg"/>
     <title>İLETİŞİM</title>
-    <link rel="stylesheet" href="css/nicepage.css" media="screen">
-    <link rel="stylesheet" href="css/iletisim.css" media="screen">
-    <link rel="stylesheet" href="css/custom.css" media="screen">
-    <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="{{ asset('css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/iletisim.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" media="screen">
     <meta name="generator" content="Nicepage 3.15.3, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -41,7 +39,8 @@
             <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
                 <h1 class="u-text u-text-1">Bize Ulaşın</h1>
                 <div class="u-form u-form-1">
-                    <form  method="post" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form validate-form" style="padding: 10px" source="custom" name="form" id="iletisim_form">
+                    <form  method="post" action="/mail-gonder" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form validate-form" style="padding: 10px" source="custom" name="form" id="iletisim_form">
+                        @csrf
                         <div class="u-form-group u-form-name">
                             <input type="text" placeholder="Adınız" id="name-3b9a" name="name" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1 validate-input" required="" data-validate="İsim Bilgisi Boş Geçilemez.">
                         </div>
@@ -52,8 +51,7 @@
                             <textarea placeholder="Mesajınız" rows="4" cols="50" id="message-3b9a" name="message" class="u-border-2 u-border-black border-light u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-3 validate-input" required="" data-validate="Mesaj Bilgisi Boş Geçilemez."></textarea>
                         </div>
                         <div class="u-align-center u-form-group u-form-submit">
-                            <a href="#" class="u-border-2 u-btn u-btn-rectangle u-btn-submit u-button-style u-none u-btn-1 border-light">gönder</a>
-                            <input type="submit" value="submit" class="u-form-control-hidden">
+                            <input type="submit" value="Gönder" class="u-border-2 u-btn u-btn-rectangle u-btn-submit u-button-style u-none u-btn-1 border-light">
                         </div>
                     </form>
                     <div id="message_return" class="message-return d-none"></div>
@@ -64,9 +62,10 @@
             <div class="u-clearfix u-sheet u-sheet-1"></div>
         </footer>
     </main>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/tilt.jquery.min.js"></script>
-    <script src="js/iletisim.js"></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/tilt.jquery.min.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/iletisim.js') }}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ asset('js/nicepage.js') }}" defer=""></script>
 </body>
 
 </html>
