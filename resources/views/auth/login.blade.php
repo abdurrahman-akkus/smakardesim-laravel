@@ -38,27 +38,33 @@
                     </div>
 
                     <div class="wrap-input100 validate-input " data-validate="Şifre bilgisi boş geçilemez...">
-                        <input id="password" class="input100 block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                        <input id="password" class="input100 block mt-1 w-full" type="password" name="password" required autocomplete="current-password" placeholder="Şifre" />
                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
 
-                    <div class="block mt-4">
-                        <label for="remember_me" class="flex items-center">
-                            <x-jet-checkbox id="remember_me" name="remember" />
-                            <span class="ml-2 text-sm text-gray-600">{{ __('Beni Hatırla') }}</span>
-                        </label>
-                    </div>
+
+                    @if (Route::has('password.request'))
+                        <div class="d-flex  justify-content-between">
+                            <label for="remember_me" class="flex items-center">
+                                <x-jet-checkbox id="remember_me" name="remember" />
+                                <span class="ml-2 text-sm text-gray-600">{{ __('Beni Hatırla') }}</span>
+                            </label>
+                            <a class="text-sm text-dark text-decoration-none" href="{{ route('password.request') }}">
+                                {{ __('Şifremi Unuttum') }}
+                            </a>
+                        </div>
+                    @endif
 
                     <div class="flex items-center justify-end mt-4">
                         <div class="container-login100-form-btn">
                             <button class="login100-form-btn" type="submit" name="submit" value="submit">Giriş</button>
                         </div>
+                    </div>
 
-                        @if (Route::has('password.request'))
-                            <a class="underline text-sm text-dark" href="{{ route('password.request') }}">
-                                {{ __('Şifremi Unuttum') }}
-                            </a>
-                        @endif
+                    <div class="d-flex justify-content-end">
+                        <a class="underline text-sm text-light float-right" href="{{ route('register') }}">
+                            {{ __('Kayıt Ol') }}
+                        </a>
                     </div>
                 </form>
 			</div>
