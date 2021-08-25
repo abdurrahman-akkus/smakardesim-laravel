@@ -28,7 +28,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                             <div class="wrap-input100 validate-input" data-validate = "Kullanıcı Adı bilgisi boş geçilemez...">
-                                <input id="name" class="input100 block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                <input id="name" class="input100 block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Kullanıcı Adı"/>
                                 <span class="focus-input100" data-placeholder="&#xf207;"></span>
                             </div>
 
@@ -55,12 +55,12 @@
                                         <div class="flex items-center">
                                             <x-jet-checkbox name="terms" id="terms"/>
 
-                                            <div class="ml-2">
-                                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-dark float-right">'.__('Terms of Service').'</a>',
-                                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-dark float-right">'.__('Privacy Policy').'</a>',
+                                            <span class="ml-2">
+                                                {!! __(':terms_of_service and :privacy_policy\'nı kabul ediyorum.', [
+                                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-dark float-right">'.__('Hizmet Koşulları').'</a>',
+                                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-dark float-right">'.__('Gizlilik Politikası').'</a>',
                                                 ]) !!}
-                                            </div>
+                                            </span>
                                         </div>
                                     </x-jet-label>
                                 </div>
