@@ -1,9 +1,9 @@
-(function($) {
+/*(function($) {
     "use strict";
 
 
     /*==================================================================
-    [ Validate ]*/
+    [ Validate ]*
     var name = $('input[name="name"]');
     var email = $('input[name="email"]');
     var message = $('textarea[name="message"]');
@@ -53,7 +53,7 @@
 
 
 
-})(jQuery);
+})(jQuery);*/
 
 function temizle() {
     $("#name-3b9a")[0].value = "";
@@ -62,7 +62,7 @@ function temizle() {
 }
 
 var request;
-let returnDiv=document.getElementById("message_return");
+let returnDiv = document.getElementById("message_return");
 // Bind to the submit event of our form
 $("#iletisim_form").submit(function(event) {
 
@@ -89,7 +89,7 @@ $("#iletisim_form").submit(function(event) {
 
     // Fire off the request to /form.php
     request = $.ajax({
-        url: "util/mail.php",
+        url: "/mail-gonder",
         type: "post",
         data: serializedData
     });

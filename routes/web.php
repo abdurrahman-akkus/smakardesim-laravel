@@ -45,3 +45,4 @@ Route::get('decrypt', [Cryptologist::class, 'decrypt']);
 
 Route::post('/valilik-izin',[ValilikIzni::class, 'izinKontrol']);
 Route::get('/kardes-ol/{id}', [CocukService::class, 'kardesOl']);
+Route::post('/mail-gonder', [Iletisim::class, 'mailGonder']);
