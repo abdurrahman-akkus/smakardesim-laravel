@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'failed' => 'Giriş bilgileriniz doğru değil!',
-    'password' => 'Girilen şifre hatalı',
-    'throttle' => 'Aşırı giriş denemesi. Lütfen :seconds saniye sonra yeniden deneyin.',
+    'failed' => 'These credentials do not match our records.',
+    'password' => 'The provided password is incorrect.',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
