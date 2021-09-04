@@ -38,22 +38,47 @@
             <!-- /.row -->
             <div class="row">
                 
-            <?php if($kullanici->role >0)  
-                        { ?>
+            @if($kullanici->role > 0)  
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                <i class="fa fa-heart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?= $cocukSayisi ?? '' ?></div>
+                                    <div>Yönetimizdeki Çocuklar</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="kayit">
+                            <div class="panel-footer">
+                                <span class="pull-left">Detaylar</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endif
+
+                
+            @if($kullanici->role > 1)
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-danger">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
                                 <i class="fab fa-wpforms fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?= $cocukSayisi ?? '' ?></div>
-                                    <div>Çocuklar</div>
+                                    <div class="huge"><?= $onaysizCocukSayisi ?? '' ?></div>
+                                    <div>Onaysız Kayıtlar</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="kayit.php">
+                        <a href="kayit">
                             <div class="panel-footer">
                                 <span class="pull-left">Detaylar</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -62,55 +87,7 @@
                         </a>
                     </div>
                 </div>
-                <?php }
-                
-                if($kullanici->role>1)
-                    { ?>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-info ">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><?= $kllnc_sayi ?? '' ?></div>
-                                    <div>Kullanıcılar</div>
-                                </div>
-                            </div>
-                        </div>                    
-                        <a href="kllnclar.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Detaylar</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-info ">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><?= $kllnc_sayi ?? '' ?></div>
-                                    <div>Kullanıcılar</div>
-                                </div>
-                            </div>
-                        </div>                    
-                        <a href="kllnclar.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">Detaylar</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <?php  } ?>
+            @endif
             </div>
             
         </div>
