@@ -6,6 +6,7 @@ use App\Http\Controllers\BizKimiz;
 use App\Http\Controllers\Iletisim;
 use App\Http\Controllers\Cocugumuz;
 use App\Http\Controllers\Cocuklarimiz;
+use App\Http\Controllers\Dashboard;
 use App\Utils\Cryptologist;
 use App\Utils\ValilikIzni;
 use App\Services\CocukService;
@@ -31,13 +32,11 @@ Route::get('/cocuklarimiz/{param?}', [Cocuklarimiz::class, 'Sayfa']);
 Route::redirect('/cocugumuz', '/cocuklarimiz');
 
 
-Route::get('/yonetim', function () {
+/*Route::get('/yonetim', function () {
     return view('welcome');
-});
+});*/
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::class, 'Sayfa'])->name('dashboard');
 
 // TODO production.env silinecek
 Route::get('encrypt', [Cryptologist::class, 'encrypt']);
