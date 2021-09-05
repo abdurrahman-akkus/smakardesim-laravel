@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="kayit">
+                        <a href="/cocuk-kayit">
                             <div class="panel-footer">
                                 <span class="pull-left">Detaylar</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="kayit">
+                        <a href="/cocuk-onay">
                             <div class="panel-footer">
                                 <span class="pull-left">Detaylar</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

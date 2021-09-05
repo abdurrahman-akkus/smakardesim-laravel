@@ -7,6 +7,8 @@ use App\Http\Controllers\Iletisim;
 use App\Http\Controllers\Cocugumuz;
 use App\Http\Controllers\Cocuklarimiz;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\CocukKayit;
+use App\Http\Controllers\CocukOnay;
 use App\Utils\Cryptologist;
 use App\Utils\ValilikIzni;
 use App\Services\CocukService;
@@ -37,6 +39,8 @@ Route::redirect('/cocugumuz', '/cocuklarimiz');
 });*/
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [Dashboard::class, 'Sayfa'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/cocuk-kayit', [CocukKayit::class, 'Sayfa']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/cocuk-onay', [CocukOnay::class, 'Sayfa']);
 
 // TODO production.env silinecek
 Route::get('encrypt', [Cryptologist::class, 'encrypt']);

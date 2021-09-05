@@ -55,22 +55,19 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="anasayfa.php"><i class="fas fa-tachometer-alt"></i> Anasayfa</a>
+                            <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Anasayfa</a>
                         </li>
-                        <?php if($kullanici->role>1)  
-                        { ?>
+                        @if($kullanici->role>0)  
                         <li>
-                            <a href="kayit.php"><i class="fab fa-wpforms"></i> Çocuklar</a>
+                            <a href="/cocuk-kayit"><i class="fa fa-heart"></i> Çocuklar</a>
                         </li>
+                        @endif
                         
-                        <?php }
-                         if($kullanici->role>2)  
-                        { ?>
+                        @if($kullanici->role>1)  
                         <li>
-                            <a href="kllnclar.php"><i class="fas fa-user-tie"></i> Kullanıcılar</a>
+                            <a href="/cocuk-onay"><i class="fab fa-wpforms"></i> Onaysızlar</a>
                         </li>
-                        
-                        <?php } ?>
+                        @endif
                     </ul>
                     <div id="check_list"></div>
                 </div>
