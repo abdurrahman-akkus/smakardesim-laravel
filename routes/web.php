@@ -54,6 +54,7 @@ Route::post('/mail-gonder', [Iletisim::class, 'mailGonder']);
 Route::post('/banka-kaydet',[BankaService::class, 'bankaKaydet']);
 Route::put('/banka-kaydet',[BankaService::class, 'bankaGuncelle']);
 Route::get('/banka/{cocukId}',[BankaService::class, 'cocugunBankalari']);
+Route::delete('/banka/{id}',[BankaService::class, 'bankaSil']);
 
 Route::get('/kardes-ol/{id}', [CocukService::class, 'kardesOl']);
 Route::post('/cocuk-kaydet',[CocukService::class, 'cocukKaydet']);
