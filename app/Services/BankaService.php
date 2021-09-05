@@ -12,10 +12,13 @@ class BankaService {
     public function bankaKaydet(Request $request)
     {
         $data = $request->all();
-        /*$data->cocuk_id = Cryptologist::decrypt($data->cocuk_id);
-        $sonuc = Banka::create();
-        return Cryptologist::encrypt($sonuc->id);*/
-        return $data;
+
+        if(Auth::id()!=$data["yetkili_id"]){
+            return response()->json(['error'=>'Yetkisiz Deneme']);
+        }
+        $data["cocuk_id"] = Cryptologist::decrypt($data["cocuk_id"]);
+        $sonuc = Banka::create($data);
+        return Cryptologist::encrypt($sonuc->id);
     }
 
     public function bankaGuncelle(Request $request)
@@ -26,10 +29,13 @@ class BankaService {
 
         $decryptedId = Cryptologist::decrypt($id);
 
+        if(Auth::id()!=$data["yetkili_id"]){
+            return response()->json(['error'=>'Yetkisiz Deneme']);
+        }
+
         $banka = Banka::find($decryptedId);
 
-        $banka -> yetkili_id = $data["yetkili_id"];
-        $banka -> cocuk_id = $data["cocuk_id"];
+        $banka -> cocuk_id = Cryptologist::decrypt($data["cocuk_id"]);
         $banka -> banka = $data["banka"];
         $banka -> birim = $data["birim"];
         $banka -> iban = $data["iban"];
@@ -51,10 +57,25 @@ class BankaService {
 
         $bankalar = Banka::where("cocuk_id","=",$decryptedId)->get();
         foreach ($bankalar as $banka){
-            $cryptedId = Cryptologist::encrypt($banka->id) ."           ";
-            $banka->id = $cryptedId;
+            $cryptedId = Cryptologist::encrypt($banka->id);
+            $banka->id = 0;
+            $banka->cryptedId=$cryptedId;
         }
         return $bankalar;
+    }
+
+    public function bankaSil($id, Request $request) 
+    {
+        $data = $request->json()->all();
+        
+        if(Auth::id()!=$data["yetkili_id"]){
+            return response()->json(['error'=>'Yetkisiz Deneme']);
+        }
+
+        $decryptedId = Cryptologist::decrypt($id);
+        $banka=Banka::find($decryptedId);
+        $sonuc = $banka->delete(); //returns true/false
+        return $sonuc;
     }
 }
 

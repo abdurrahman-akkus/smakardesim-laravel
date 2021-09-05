@@ -480,10 +480,6 @@ use App\Utils\Cryptologist;
     function bankaBilgileriniCek() {
         let cocuk_id = $('#cocuk_id').val();
         if (cocuk_id === "") return;
-        let data = {
-            "cocuk_id": cocuk_id,
-            "yetkili_id":{{$yetkiliId}}
-        };
 
         fetch('/banka/'+cocuk_id, {
             method: 'GET', // or 'PUT'
@@ -586,7 +582,7 @@ use App\Utils\Cryptologist;
                 iban: $('#iban').val()
             })
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             if (method == 'POST' && data != 0) {
                 $('#banka_id').val(data);
@@ -619,7 +615,7 @@ use App\Utils\Cryptologist;
         $('#banka_tablosu tbody').html("");
         for(datum of data){
             $('#banka_tablosu tbody').append("<tr>"
-                +"<td class='id-satiri' hidden>"+datum.id+"</td>"
+                +"<td class='id-satiri' hidden>"+datum.cryptedId+"</td>"
                 +"<td class='banka-satiri'>"+datum.banka+"</td>"
                 +"<td class='birim-satiri'>"+datum.birim+"</td>"
                 +"<td class='iban-satiri'>"+datum.iban+"</td>"
@@ -641,19 +637,17 @@ use App\Utils\Cryptologist;
 
         let bankaId = $arg.parents("tr").find('.id-satiri').text();
 
-        fetch('banka-api.php', {
-            method: "POST",
+        fetch('/banka/'+bankaId, {
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 "_token": "{{ csrf_token() }}",
-                islem: "sil",
-                id: bankaId,
                 yetkili_id:{{$yetkiliId}}
             })
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             if ( data == 1) {
                 bankaBilgileriniCek();

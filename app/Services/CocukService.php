@@ -35,6 +35,10 @@ class CocukService {
         $decryptedId = Cryptologist::decrypt($id);
 
         $cocuk = Cocuk::find($decryptedId);
+        
+        if(Auth::id()!=$cocuk -> yetkili_kullanici){
+            return response()->json(['error'=>'Yetkisiz Deneme']);
+        }
 
         $cocuk -> yetkili_kullanici = $data["yetkili_kullanici"];
         $cocuk -> ad = $data["ad"];
