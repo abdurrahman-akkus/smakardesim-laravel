@@ -119,10 +119,14 @@ function yuzdeRozeti($value)
                             </div>
                         </div>
                         <div hidden class="fb-share-button" data-href="https://smakardesim.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small">
-                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Paylaş</a>
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a>
                         </div>
-                        <button id="facebook_share_btn" class="mt-1 share-btn"><i class="fab fa-facebook"></i> Paylaş</button>
-                        <button id="twitter_share_btn" class="mt-1 share-btn"><i class="fab fa-twitter"></i> Tweetle</button>
+                        <label id="facebook_share_btn" class="fab fa-facebook btn text-light mt-1" style="cursor:pointer"> Paylaş</label>
+                        <label class="fab fa-twitter btn btn-info text-light mt-1">
+                            <a class="text-light" data-lang="tr" data-via="smakardesim" target="_blank"  
+                            href="https://twitter.com/intent/tweet?text=<?= $cocuk["ad"] ?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?= $cocuk["ad"] ?>'i kardeş seçerek tedavisine destek olabilirsin. smakardesim.com" 
+                            _fcksavedurl="https://twitter.com/intent/tweet?text=<?= $cocuk["ad"] ?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?= $cocuk["ad"] ?>'i kardeş seçerek tedavisine destek olabilirsin. smakardesim.com" data-size="large">Tweetle</a>
+                        </label>
                     </div>
                     <div class="col-md-6 hidden-scroll-bar">
                         <table class="table table-striped text-light">

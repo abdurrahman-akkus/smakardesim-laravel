@@ -12,7 +12,10 @@ class Dashboard extends Controller
     public function Sayfa(Request $request)
     {
         $user = User::where("id","=", Auth::id())->first();
-        $cocuklar = Cocuk::where("aktif_mi","=","1")->get();
+        $cocuklar = Cocuk::where([
+            ['yetkili_kullanici', '=', Auth::id()],
+            ['aktif_mi', '=', 1]
+        ])->get();
         $onaysizCocuklar = Cocuk::where("aktif_mi","=","0")->get();
         return view('dashboard')
                        ->with("cocukSayisi",sizeof($cocuklar))
