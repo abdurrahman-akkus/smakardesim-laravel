@@ -12,6 +12,7 @@ use App\Http\Controllers\CocukOnay;
 use App\Utils\Cryptologist;
 use App\Utils\ValilikIzni;
 use App\Services\CocukService;
+use App\Services\BankaService;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,11 +50,11 @@ Route::get('decrypt', [Cryptologist::class, 'decrypt']);
 Route::post('/valilik-izin',[ValilikIzni::class, 'izinKontrol']);
 Route::post('/mail-gonder', [Iletisim::class, 'mailGonder']);
 
+// API
 Route::post('/banka-kaydet',[BankaService::class, 'bankaKaydet']);
 Route::put('/banka-kaydet',[BankaService::class, 'bankaGuncelle']);
+Route::get('/banka/{cocukId}',[BankaService::class, 'cocugunBankalari']);
 
-
-// API
 Route::get('/kardes-ol/{id}', [CocukService::class, 'kardesOl']);
 Route::post('/cocuk-kaydet',[CocukService::class, 'cocukKaydet']);
 Route::put('/cocuk-kaydet',[CocukService::class, 'cocukGuncelle']);

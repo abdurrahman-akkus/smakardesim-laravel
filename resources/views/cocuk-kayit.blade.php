@@ -435,11 +435,7 @@ use App\Utils\Cryptologist;
     function cocugunBilgileriniCek() {
         let id = $('#cocuk_id').val();
         if (id === "") return;
-        let data = {
-            "id": id,
-            "yetkili_id":{{$yetkiliId}}
-        };
-
+        
         fetch('cocuk/' + id, {
             method: 'GET', // or 'PUT'
             headers: {
@@ -489,17 +485,11 @@ use App\Utils\Cryptologist;
             "yetkili_id":{{$yetkiliId}}
         };
 
-        fetch('banka-api.php', {
-            method: 'POST', // or 'PUT'
+        fetch('/banka/'+cocuk_id, {
+            method: 'GET', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                "_token": "{{ csrf_token() }}",
-                islem: "getir",
-                cocuk_id: cocuk_id,
-                yetkili_id:{{$yetkiliId}}
-            }),
         })
         .then(response => response.json())
         .then(data => {
@@ -509,7 +499,6 @@ use App\Utils\Cryptologist;
         .catch((error) => {
             console.error('Error:', error);
         });
-
     }
 
     function kaydet() {
@@ -581,7 +570,7 @@ use App\Utils\Cryptologist;
         let bankaId = $('#banka_id').val();
         let method = (bankaId === "") ? 'POST' : 'PUT';
 
-        fetch('banka-api.php', {
+        fetch('/banka-kaydet', {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
