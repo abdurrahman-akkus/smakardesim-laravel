@@ -1,0 +1,14 @@
+PHP(Min 7.4)
+MySQL(Min 8.0)
+1-Composer Kurulur
+2-terminal- composer global require "laravel/installer"
+3-terminal- composer install
+4-.env-example .env olarak düzenlenir. İçeriğindeki veri tabanı bilgileri ve mail bilgileri oluşturulur.
+5-terminal- php artisan key:generate
+6-terminal- php artisan migrate
+
+
+
+
+
+6-terminal- php artisan serve
