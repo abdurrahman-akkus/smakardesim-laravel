@@ -30,7 +30,7 @@ function yuzdeRozeti($value)
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <link rel="icon" type="image/png" href="/images/smaKardesimLogo.svg"/>
-    <title>İsim Soyisim</title>
+    <title>{{$cocuk->ad}}</title>
     <link rel="stylesheet" href="{{ asset('css/nicepage.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('css/cocuklarimiz.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('css/anasayfa.css') }}" media="screen">
@@ -115,17 +115,15 @@ function yuzdeRozeti($value)
 
                             <div class="p-2 rounded bg-info text-light">
                                 <img src="/images/kardes.svg" width="20" height="20" alt="">
-                                <span id="kardes_sayisi">{{$cocuk->kardes_sayisi}} </span>Kardeş
+                                <span id="kardes_sayisi">{{$cocuk->kardes_sayisi}} </span> Kardeş
                             </div>
                         </div>
-                        <div hidden class="fb-share-button" data-href="https://smakardesim.com" data-quote="asdasdsadasd" data-layout="button_count" data-size="small">
-                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a>
-                        </div>
-                        <label id="facebook_share_btn" class="fab fa-facebook btn text-light mt-1" style="cursor:pointer"> Paylaş</label>
-                        <label class="fab fa-twitter btn btn-info text-light mt-1">
-                            <a class="text-light" data-lang="tr" data-via="smakardesim" target="_blank"  
-                            href="https://twitter.com/intent/tweet?text=<?= $cocuk["ad"] ?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?= $cocuk["ad"] ?>'i kardeş seçerek tedavisine destek olabilirsin. smakardesim.com" 
-                            _fcksavedurl="https://twitter.com/intent/tweet?text=<?= $cocuk["ad"] ?> artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden <?= $cocuk["ad"] ?>'i kardeş seçerek tedavisine destek olabilirsin. smakardesim.com" data-size="large">Tweetle</a>
+
+                        <label id="facebook_share_btn" class="btn btn-sm text-light mt-1" style="cursor:pointer">
+                            <i class="fab fa-facebook"></i> Paylaş
+                        </label>
+                        <label class="btn btn-sm btn-info text-light mt-1" onclick="tweetle()">
+                            <i class="fab fa-twitter"></i> Tweetle
                         </label>
                     </div>
                     <div class="col-md-6 hidden-scroll-bar">
@@ -288,8 +286,7 @@ function yuzdeRozeti($value)
                 version: 'v11.0'
             });
         };
-    </script>
-    <script>
+
         document.getElementById('facebook_share_btn').onclick = function() {
             FB.ui({
                 display: 'popup',
@@ -299,6 +296,13 @@ function yuzdeRozeti($value)
                 description: "Donate us, please",
 
             }, function(response) {});
+        }
+
+        function tweetle() {
+            window.open('https://twitter.com/intent/tweet?text={{$cocuk->ad}} '+
+            'artık benim SMA Kardeşim. Sen de bize katılmak istersen SMA Kardesim sitesinden {{$cocuk->ad}}\'i '+
+            'kardeş seçerek tedavisine destek olabilirsin.&'+
+            'url=https://smakardesim.com/cocugumuz/{{Cryptologist::encrypt($cocuk->id)}}','_blank');
         }
 
         function panoyaKopyala($arg) {
