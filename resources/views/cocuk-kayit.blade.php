@@ -306,101 +306,109 @@ use App\Utils\Cryptologist;
         pdf:".pdf",
         image:".jpg, .jpeg, .png"
     }
+    
+    document.getElementById("genel_bilgiler").reset();
     // file upload kısmı
     $("#izin_yukle_buton").click(function () { //dosya seçildiğinde
         if(!tekilUygunlukKontrolu($("#ad")[0])) return; // Çocuk İsmi Kontrol Edilir
         if(!tekilUygunlukKontrolu($("#valilik_izni")[0])) return; // Dosya'nın varlığı kontrol edilir.
         var file_button = $(this); //butonu al
         var my_files = document.getElementById("valilik_izni"); //valilik_izni id li elemanı al, file input
-        if (my_files.files && my_files.files[0]) { //dosya var ise
-            var reader = new FileReader(); //FileReader class kur
-            reader.onload = function () { //veriyi yükle
-                var file_data = reader.result; //dosya verisi
-                $.ajax({ //dosya data sını ajax.php ye postala
-                    url: "upload_file.php",
-                    type: "POST",
-                    data: {"_token": "{{ csrf_token() }}","veri": file_data,"tur":"valilik-izni","cocuk":$("#ad").val().replace(" ","-")},
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        if (data.message == "success") {
-                            if ($('[name="valilik_izin_turu"]:checked').val()=="image") {
-                                file_button.after('<img class="yuklenen" src="' + file_data + '" width="350px">'); //file input elemanının sonrasına ekle
-                            } else {
-                                file_button.after('<iframe class="yuklenen" src="' + file_data + '" width="350px" frameborde="0">'); //file input elemanının sonrasına ekle
-                            }
+        var fd = new FormData();
 
-                            $('#valilik_izni_url').val(data.path);
-                        } else {
-                            alert(data.message); //hata mesajini goster
-                        }
+        // Append data 
+        fd.append('veri',my_files.files[0]);
+        fd.append('tur','valilik-izni');
+        fd.append('cocuk',$("#ad").val().replace(" ","-"));
+        fd.append('_token','{{ csrf_token() }}');
+        $.ajax({ //dosya data sını ajax.php ye postala
+            url: "{{route('dosya-yukle')}}",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: fd,
+            dataType: "json",
+            success: function (data) {
+                if (data.success == 1) {
+                    if ($('[name="valilik_izin_turu"]:checked').val()=="image") {
+                        file_button.after('<img class="yuklenen" src="' + data.filepath + '" width="350px">'); //file input elemanının sonrasına ekle
+                    } else {
+                        file_button.after('<iframe class="yuklenen" src="' + data.filepath + '" width="350px" frameborde="0">'); //file input elemanının sonrasına ekle
                     }
-                });
+                    $('#valilik_izni_url').val(data.filepath);
+                } else {
+                    alert(data.message); //hata mesajini goster
+                }
             }
-            reader.readAsDataURL(my_files.files[0]); //oku
-        }
+        });   
     });
+
     $("#rapor_yukle_buton").click(function () { //dosya seçildiğinde
         if(!tekilUygunlukKontrolu($("#ad")[0])) return; // Çocuk İsmi Kontrol Edilir
         if(!tekilUygunlukKontrolu($("#hastalik_raporu")[0])) return; // Dosya'nın varlığı kontrol edilir.
         var file_button = $(this); //butonu al
         var my_files = document.getElementById("hastalik_raporu"); //hastalik_raporu id li elemanı al, file input
-        if (my_files.files && my_files.files[0]) { //dosya var ise
-            var reader = new FileReader(); //FileReader class kur
-            reader.onload = function () { //veriyi yükle
-                var file_data = reader.result; //dosya verisi
-                $.ajax({ //dosya data sını ajax.php ye postala
-                    url: "upload_file.php",
-                    type: "POST",
-                    data: {"_token": "{{ csrf_token() }}","veri": file_data,"tur":"hastalık-raporu","cocuk":$("#ad").val().replace(" ","-")},
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        if (data.message == "success") {
-                            if ($('[name="hastalik_raporu_turu"]:checked').val()=="image") {
-                                file_button.after('<img class="yuklenen" src="' + file_data + '" width="350px">'); //file input elemanının sonrasına ekle
-                            } else {
-                                file_button.after('<iframe class="yuklenen" src="' + file_data + '" width="350px" frameborde="0">'); //file input elemanının sonrasına ekle
-                            }
-                            $('#hastalik_raporu_url').val(data.path);
-                        } else {
-                            alert(data.message); //hata mesajini goster
-                        }
+        var fd = new FormData();
+
+        // Append data 
+        fd.append('veri',my_files.files[0]);
+        fd.append('tur','hastalik-raporu');
+        fd.append('cocuk',$("#ad").val().replace(" ","-"));
+        fd.append('_token','{{ csrf_token() }}');
+        $.ajax({ //dosya data sını ajax.php ye postala
+            url: "{{route('dosya-yukle')}}",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: fd,
+            dataType: "json",
+            success: function (data) {
+                if (data.success == 1) {
+                    if ($('[name="hastalik_raporu_turu"]:checked').val()=="image") {
+                        file_button.after('<img class="yuklenen" src="' + data.filepath + '" width="350px">'); //file input elemanının sonrasına ekle
+                    } else {
+                        file_button.after('<iframe class="yuklenen" src="' + data.filepath + '" width="350px" frameborde="0">'); //file input elemanının sonrasına ekle
                     }
-                });
+                    $('#hastalik_raporu_url').val(data.filepath);
+                } else {
+                    alert(data.message); //hata mesajini goster
+                }
             }
-            reader.readAsDataURL(my_files.files[0]); //oku
-        }
+        });        
     });
+
     let resim_path = "";
     $("#foto_yukle_buton").click(function () { //dosya seçildiğinde
         if(!tekilUygunlukKontrolu($("#ad")[0])) return; // Çocuk İsmi Kontrol Edilir
         if(!tekilUygunlukKontrolu($("#resim")[0])) return; // Dosya'nın varlığı kontrol edilir.
         var file_button = $(this); //butonu al
         var my_files = document.getElementById("resim"); //resim id li elemanı al, file input
-        if (my_files.files && my_files.files[0]) { //dosya var ise
-            var reader = new FileReader(); //FileReader class kur
-            reader.onload = function () { //veriyi yükle
-                var file_data = reader.result; //dosya verisi
-                $.ajax({ //dosya data sını ajax.php ye postala
-                    url: "upload_file.php",
-                    type: "POST",
-                    data: {"_token": "{{ csrf_token() }}","veri": file_data,"tur":"fotograf","cocuk":$("#ad").val().replace(" ","-")},
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        if (data.message == "success") {
-                            resim_path = data.path
-                            file_button.after('<img class="yuklenen" src="' + file_data + '" width="350px">'); //file input elemanının sonrasına ekle
-                            $('#resim_url').val(data.path);
-                        } else {
-                            alert(data.message); //hata mesajini goster
-                        }
-                    }
-                });
+        
+        var fd = new FormData();
+
+        // Append data 
+        fd.append('veri',my_files.files[0]);
+        fd.append('tur','fotograf');
+        fd.append('cocuk',$("#ad").val().replace(" ","-"));
+        fd.append('_token','{{ csrf_token() }}');
+        $.ajax({ //dosya data sını ajax.php ye postala
+            url: "{{route('dosya-yukle')}}",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: fd,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if (data.success == 1) {
+                    resim_path = data.filepath
+                    file_button.after('<img class="yuklenen" src="' + resim_path + '" width="350px">'); //file input elemanının sonrasına ekle
+                    $('#resim_url').val(resim_path);
+                } else {
+                    alert(data.message); //hata mesajini goster
+                }
             }
-            reader.readAsDataURL(my_files.files[0]); //oku
-        }
+        });
     });
     // file upload kısmı
 

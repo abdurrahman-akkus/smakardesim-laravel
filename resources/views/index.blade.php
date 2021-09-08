@@ -98,7 +98,7 @@ use App\Utils\Cryptologist;
                         </span>
                     </a>
                 </div>
-                <a href="cocuklarimiz.php" class="u-align-center u-btn u-button-style u-hover-white u-palette-1-base u-btn-1">Tüm çocuklarımız<br>
+                <a href="/cocuklarimiz" class="u-align-center u-btn u-button-style u-hover-white u-palette-1-base u-btn-1">Tüm çocuklarımız<br>
                 </a>
             </div>
         </section>

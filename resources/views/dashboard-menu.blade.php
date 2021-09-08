@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand m-auto" href="anasayfa.php" style="margin-top: -10px;">
+                <a class="navbar-brand m-auto" href="/dashboard" style="margin-top: -10px;">
                 <img style="width:45px;display: inline-block;" src="../images/smaKardesimLogo.svg" alt="SMA Kardeşim"></a>
             </div>
             <!-- /.navbar-header -->
