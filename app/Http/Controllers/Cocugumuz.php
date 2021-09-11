@@ -12,7 +12,7 @@ class Cocugumuz extends Controller
     public function Sayfa($id)
     {
         $decryptedId=Cryptologist::decrypt($id);
-        $cocuk = Cocuk::all()->where("id","=",$decryptedId)->first();
+        $cocuk = Cocuk::all()->where("id","=",$decryptedId)->where("aktif_mi","=",1)->first();
         $bankalar = Banka::all()->where("cocuk_id","=",$decryptedId);
 
         if(empty($cocuk)){

@@ -11,8 +11,15 @@ class CocukKayit extends Controller
     public function Sayfa()
     {
         $yetkiliId = Auth::id();
-        $cocuklar = Cocuk::where("yetkili_kullanici","=",$yetkiliId)->get();
+        $cocuklar; 
         $user = User::where("id","=", Auth::id())->first();
+
+        if($user->role>1){
+            $cocuklar= Cocuk::all();
+        }
+        else{
+            $cocuklar= Cocuk::where("yetkili_kullanici","=",$yetkiliId)->get();
+        }
         
         return view('cocuk-kayit')
                     ->with("cocuklar",$cocuklar)
