@@ -4,6 +4,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Utils\Cryptologist;
+use App\Models\User;
 use App\Models\Cocuk;
 
 class CocukService {
@@ -76,6 +77,9 @@ class CocukService {
         $cocuk = Cocuk::find($decryptedId);
 
         if(Auth::id()!=$cocuk->yetkili_kullanici){
+            if(User::find(Auth::id())->role>1){
+                return $cocuk;
+            }
             return response()->json(['error'=>'Yetkisiz Deneme']);
         }
 
