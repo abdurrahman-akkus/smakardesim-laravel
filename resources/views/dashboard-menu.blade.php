@@ -36,9 +36,9 @@
                         </li>
                         <li>
                             <!-- Authentication -->
-                            <form method="POST" action="http://127.0.0.1:8000/cikis">
+                            <form method="POST" action="/cikis">
                                 @csrf
-                                <a href="http://127.0.0.1:8000/cikis" onclick="event.preventDefault();
+                                <a href="/cikis" onclick="event.preventDefault();
                                                 this.closest('form').submit();" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition w-100" style="width: 100%;display: inline-block;">Çıkış</a>
                             </form>
                         </li>
@@ -52,7 +52,7 @@
 
             
             <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+                <div class="sidebar-nav navbar-collapse collapse">
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Anasayfa</a>

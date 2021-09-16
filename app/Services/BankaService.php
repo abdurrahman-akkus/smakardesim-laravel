@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Utils\Cryptologist;
 use App\Models\Cocuk;
 use App\Models\Banka;
+use App\Models\User;
 
 class BankaService {
 
@@ -52,7 +53,9 @@ class BankaService {
         $cocuk = Cocuk::find($decryptedId);
 
         if(Auth::id()!=$cocuk->yetkili_kullanici){
-            return response()->json(['error'=>'Yetkisiz Deneme']);
+            if(User::find(Auth::id())->role<2){ // Yetkisi 1 den büyük olanlar görebilir.
+                return response()->json(['error'=>'Yetkisiz Deneme']);
+            }
         }
 
         $bankalar = Banka::where("cocuk_id","=",$decryptedId)->get();
