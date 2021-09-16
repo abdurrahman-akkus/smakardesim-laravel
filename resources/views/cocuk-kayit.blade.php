@@ -1,6 +1,3 @@
-<?php
-use App\Utils\Cryptologist;
-?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -45,7 +42,7 @@ use App\Utils\Cryptologist;
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="basvurular.php">< Geri Dön</a>
+                        <a href="/dashboard">< Geri Dön</a>
                     </div>
                     <div class="panel-body">
                         <div class="px-2">
@@ -53,7 +50,7 @@ use App\Utils\Cryptologist;
                             <select name="" id="cocuk_id" class="form-control" onchange="bilgileriCek();">
                                 <option value="">Yeni Kayıt</option>
                                 @foreach ($cocuklar as $cocuk)
-                                    <option value="{{Cryptologist::encrypt($cocuk->id)}}">{{ $cocuk->ad }}</option>
+                                    <option value="{{$cocuk->encryptedId}}">{{ $cocuk->ad }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -263,10 +260,69 @@ use App\Utils\Cryptologist;
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+
+    <div id="secim_paneli_buton_kapsayici">
+        <button class="bg-secondary" data-toggle="collapse" data-target="#secim_paneli"><i class="fa fa-caret-down"></i></button>
+    </div>
+    <div id="secim_paneli" class="show collapse in">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Çocuğun Adı</th>
+                    <th>Yetkili Adı</th>
+                    <th>Faaliyet No</th>
+                    <th><em>f<sub>x</sub></em></th>
+                    <th>Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($cocuklar as $cocuk)
+                    <tr style="cursor:pointer;" onclick="listedenBilgileriCek('{{$cocuk->encryptedId}}')">
+                        <td class="cocugun-adi">{{$cocuk->ad}}</td>
+                        <td><span class="yetkili-adi">{{$cocuk->yetkili_adi}}</span> <span class="yetkili-soyadi">{{$cocuk->yetkili_soyadi}}</span></td>
+                        <td class="faaliyet-no">{{$cocuk->faaliyet_no}}</td>
+                        <td><button class="btn btn-info" onclick="listedenIzinKontrol($(this))" data-toggle="modal" data-target="#valilik_izni_modal">SORGULA</button></td>
+                        <td class="durum">
+                            @if($cocuk->aktif_mi==0)<span class="gosterge gosterge-kirmizi"></span>@endif
+                            @if($cocuk->aktif_mi==1)<span class="gosterge gosterge-yesil"></span>@endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     </div>
     <!-- /#page-wrapper -->
 </div>
 <style>
+    #page-wrapper {
+    height:calc(100vh - 50px);
+    overflow: scroll;
+}
+#secim_paneli {
+    background-color: grey;
+    position: fixed;
+    top:50px;
+    left:250px;
+    width:calc(100% - 250px);
+    height:calc(100% - 50px);
+    z-index: 99;
+    overflow: scroll;
+}
+#secim_paneli_buton_kapsayici{
+    background-color:lightgrey;
+    position: absolute;
+    top:40px;
+    left:250px;
+    width:calc(100% - 250px);
+    z-index: 100;
+    display:flex;
+    justify-content:center;
+}
+#secim_paneli_buton_kapsayici button{
+    height: 20px;
+    width:50px;
+}
 .rounded {
     border-radius: 50%;
 }
@@ -287,6 +343,39 @@ use App\Utils\Cryptologist;
 
 .form-control {
     line-height: 1.42857143 !important;
+}
+
+.gosterge {
+    border-radius:50%;
+    width:20px;
+    height:20px;
+    display:block;
+}
+
+.gosterge-kirmizi {
+    background-color:red;
+}
+
+.gosterge-yesil {
+    background-color:green;
+}
+
+.ozet-tablo {
+    width:100%;
+}
+
+.ozet-tablo td,
+.ozet-tablo th {
+    border:1px solid darkgrey;
+}
+
+@media screen  and (max-width: 767px) {
+    
+    #secim_paneli,
+    #secim_paneli_buton_kapsayici {
+        left:0;
+        width:100%;
+    }
 }
 </style>
 <!-- /#wrapper -->
@@ -430,12 +519,20 @@ use App\Utils\Cryptologist;
             ]
         });
 
+    
+    function listedenBilgileriCek(param) {
+        $('#cocuk_id').val(param);
+        bilgileriCek();
+        $('#secim_paneli').collapse('hide');
+    }
+
     function bilgileriCek() {
-        document.getElementById("genel_bilgiler").reset();
+        $("#genel_bilgiler")[0].reset();
         editoruTemizle($("#kisa_aciklama"));
         editoruTemizle($("#aciklama"));
         $(".yuklenen").remove();
-        document.getElementById("banka_form").reset();
+        $("#banka_form")[0].reset();
+        $("#banka_tablosu tbody").html("");
         cocugunBilgileriniCek();
         bankaBilgileriniCek();
     }
