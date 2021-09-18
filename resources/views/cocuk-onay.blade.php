@@ -217,7 +217,7 @@
 #secim_paneli {
     background-color: grey;
     position: fixed;
-    top:50px;
+    top:70px;
     left:250px;
     width:calc(100% - 250px);
     height:calc(100% - 50px);
@@ -235,8 +235,9 @@
     justify-content:center;
 }
 #secim_paneli_buton_kapsayici button{
-    height: 20px;
+    height: 30px;
     width:50px;
+    padding-top: 8px;
 }
 .rounded {
     border-radius: 50%;
