@@ -27,14 +27,18 @@ function downloadDiv() {
 
     let node = document.getElementById('card-container');
     let clone = node.cloneNode(true);
+    clone.setAttribute("style", "background-image: url('/images/background.png');");
     clone.setAttribute("style", "width: 1000px; height: 1000px; padding:30px;");
     // border: 5px solid black")
     //  padding: 15px; border-image: url('../../images/border.png') 30 stretch;")
-    // clone.setAttribute("style",  "border: 20px solid transparent; padding: 15px; border-image: url('../../images/border.png') 30 stretch;")
+    //clone.setAttribute("style",  "border: 20px solid transparent; padding: 15px; border-image: url('/images/border.png') 30 stretch;")
     clone.children[0].setAttribute("style", "width: 900px; height: 400px;  display: block; margin-left: auto; margin-right: auto;");
-    clone.children[1].setAttribute("style", "width: 120px; height: 120px;  display: block; margin-left: auto; margin-right: auto;");
-    clone.children[2].setAttribute("style", "font-size: 25px;");
-    clone.children[3].setAttribute("style", "width: 120px; height: 120px;");
+    clone.children[1].setAttribute("style", "margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; display: block; margin-left: auto; margin-right: auto; width: 150px; height: 150px;");
+    clone.children[3].setAttribute("style", "font-size: 25px; text-align:center;");
+    clone.children[5].setAttribute("style", "width:100%;font-size: 25px;");
+    clone.children[6].setAttribute("style", "width: 70px; height: 70px;");
+
+
     // .forEach(element=>{
     //   element.style.fontSize = "25px"
     // })
