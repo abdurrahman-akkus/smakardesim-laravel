@@ -93,6 +93,9 @@ function yuzdeRozeti($value)
                                             <div id="card-container" class="border-img row mt-5">
                                                     <img id="card-image" class="img-fluid" src="{{$cocuk->resim_url}}" />
                                                     <img src="/images/smaKardesimLogo.svg" id="card-logo">
+                                                    <br>
+                                                    <span class="belge-baslik">FARKINDALIK BELGESİ</span>
+                                                    <br>
                                                     <p id="card-msg">
                                                         Ben <span id="card-title" class="card-font text-center">*********</span> olarak
                                                         <span class="card-font">{{$cocuk->ad}}</span> isimli çocuğumuzu SMA KARDEŞİM
@@ -319,7 +322,7 @@ function yuzdeRozeti($value)
         }
     </script>
 
-    <!-- Sma KArdeişm ol button fonksiyonu -->
+    <!-- Sma Kardeşim ol button fonksiyonu -->
     <script>
         function kardesSayisiArttir() {
             let cocuk_id = '{{Cryptologist::encrypt($cocuk->id)}}';
@@ -402,7 +405,7 @@ function yuzdeRozeti($value)
             return n > 9 ? "" + n : "0" + n;
         }
     </script>
-    <!-- Sma KArdeişm ol button fonksiyonu -->
+    <!-- Sma Kardeşim ol button fonksiyonu -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 

@@ -3,9 +3,16 @@
     src: url("./fontTTF/Lobster-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "zekton";
+    src: url("./fontTTF/zektonbo.ttf") format("truetype");
+}
+
 #card-container {
     background-image: url("../../images/background.png");
     padding: 20px;
+    width: auto;
+    height: auto;
 }
 
 #card-image {
@@ -17,6 +24,10 @@
     margin-right: auto;
 }
 
+.belge-baslik{
+    text-align: center;
+    font-family: zekton;
+}
 
 /* #card-text {
   padding: 10px;
@@ -29,6 +40,7 @@
     margin-bottom: 20px;
     width: 50px;
     height: 50px;
+    padding: 0;
 }
 
 #card-logo {
@@ -46,13 +58,11 @@
 .card-font {
     font-family: card-font;
     color: blueviolet;
-    font-weight: 700;
     font-size: 15px;
 }
 
 #card-msg {
     font-family: card-font;
-    font-weight: 700;
     font-size: 15px;
     text-align: center;
 }
