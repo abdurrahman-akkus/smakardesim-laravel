@@ -24,11 +24,16 @@ title.addEventListener("keyup", (event) => {
 })
 
 function downloadDiv() {
+    if (!document.querySelector("#card-form-title").checkValidity()) {
+        document.querySelector("#card-form-title").reportValidity();
+        return;
+    }
 
     let node = document.getElementById('card-container');
     let clone = node.cloneNode(true);
+    clone.setAttribute("id", "klonlanmis");
     clone.setAttribute("style", "background-image: url('/images/background.png');");
-    clone.setAttribute("style", "width: 1000px; height: 1000px; padding:30px;");
+    clone.setAttribute("style", "width: 1000px; height: 1000px;");
     // border: 5px solid black")
     //  padding: 15px; border-image: url('../../images/border.png') 30 stretch;")
     //clone.setAttribute("style",  "border: 20px solid transparent; padding: 15px; border-image: url('/images/border.png') 30 stretch;")
@@ -37,6 +42,7 @@ function downloadDiv() {
     clone.children[3].setAttribute("style", "font-size: 25px; text-align:center;");
     clone.children[5].setAttribute("style", "width:100%;font-size: 25px;");
     clone.children[6].setAttribute("style", "width: 70px; height: 70px;");
+    clone.children[7].setAttribute("style", "width: 1000px; height: 1000px;");
 
 
     // .forEach(element=>{
@@ -44,13 +50,14 @@ function downloadDiv() {
     // })
     document.body.appendChild(clone);
 
-    domtoimage.toPng(clone)
+    setTimeout(() => {}, 1000);
+    domtoimage.toPng(document.getElementById("klonlanmis"))
         .then(function(dataUrl) {
             downloadURI(dataUrl, "Farkındalık Belgesi.png")
-            document.body.removeChild(clone)
+                //document.body.removeChild(clone)
         })
         .catch(function(error) {
-            console.error('oops, something went wrong!', error);
+            console.error('Hoppp, bir şeyler ters gitti!', error);
         });
 
 }
