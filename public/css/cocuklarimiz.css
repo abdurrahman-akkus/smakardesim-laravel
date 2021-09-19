@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
-    font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -31,6 +30,7 @@ body {
     margin: 0 20px 20px 0;
     border-radius: 15px;
 }
+
 
 /*.home .cocuklar a:hover span {
     opacity: 1;
@@ -102,23 +102,24 @@ body {
     padding: 0px 5px 0px 5px;
 }
 
+img#valilik_izni,
+img#hastalik_raporu {
+    width: 100%;
+}
+
 @media (max-width: 991px) {
     .content {
         width: 650px;
     }
-
     /*.cocuk {
         opacity: 1;
     }*/
-
     .baslik {
         justify-content: center;
     }
-
     .cocuklar {
         justify-content: center;
     }
-
     .arama {
         justify-content: center;
     }

@@ -9,25 +9,44 @@
 }
 
 #card-container {
-    background-image: url("../../images/background.png");
     padding: 20px;
     width: auto;
     height: auto;
 }
 
 #card-image {
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 200px;
     margin-top: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.belge-baslik{
+.belge-baslik {
     text-align: center;
     font-family: zekton;
+    font-size: 25px;
 }
+
+#arkaplan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1
+}
+
+#card-container,
+#klonlanmis {
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    z-index: 0;
+}
+
 
 /* #card-text {
   padding: 10px;
@@ -36,7 +55,7 @@
 #qr-code {
     display: block;
     margin-left: auto;
-    margin-right: 0px;
+    margin-right: 20px;
     margin-bottom: 20px;
     width: 50px;
     height: 50px;
@@ -58,12 +77,12 @@
 .card-font {
     font-family: card-font;
     color: blueviolet;
-    font-size: 15px;
+    font-size: 30px;
 }
 
 #card-msg {
     font-family: card-font;
-    font-size: 15px;
+    font-size: 20px;
     text-align: center;
 }
 

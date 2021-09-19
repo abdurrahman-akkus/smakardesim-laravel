@@ -85,12 +85,13 @@ function yuzdeRozeti($value)
                                         </div>
                                         <div class="modal-body">
                                             <div>
-                                                <form>
+                                                <form class="mb-2">
                                                     <label for="card-form-title"><b>İsim Soyisim:</b></label>
-                                                    <input type="text" id="card-form-title" class="form-control" name="card-form-title" />
+                                                    <input type="text" id="card-form-title" class="form-control" name="card-form-title" minlength="3" required/>
+                                                    <button id="save-button-card" type="button" class="btn btn-primary" onclick="downloadDiv()">Belgeyi İndir</button>
                                                 </form>
                                             </div>
-                                            <div id="card-container" class="border-img row mt-5">
+                                            <div id="card-container" style="position:relative;">
                                                     <img id="card-image" class="img-fluid" src="{{$cocuk->resim_url}}" />
                                                     <img src="/images/smaKardesimLogo.svg" id="card-logo">
                                                     <br>
@@ -103,10 +104,10 @@ function yuzdeRozeti($value)
                                                         çocuklarımıza destek vererek kardeş olabilirsiniz.
                                                     </p>
                                                     <img src="/images/qrCodesmakardesim.png" id="qr-code">
+                                                    <img src="../../images/background.png" alt="" id="arkaplan">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button id="save-button-card" type="button" class="btn btn-primary" onclick="downloadDiv()">Belgeyi İndir</button>
                                             <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button> -->
                                         </div>
                                     </div>
@@ -196,7 +197,7 @@ function yuzdeRozeti($value)
                     </div>
                 </div>
 
-                <div class="row text-light mt-4">
+                <div class="text-light mt-4 p-2">
                     @if (!empty($cocuk->hastalik_raporu_url) || !empty($cocuk->valilik_izni_url))
                         <h3 class="mt-4">Dokümanlar</h3>
                         <ul>
@@ -216,7 +217,7 @@ function yuzdeRozeti($value)
                         <a href="{{ $cocuk->hastalik_raporu_url }}" class="mt-4" target="_blank">Hastalık Raporu <i class="fas fa-download"></i></a><!-- TODO: Telefonda indirmek istiyor -->
                         @if ($cocuk->hastalik_raporu_turu == "pdf")
                             <div style="height: 500px;margin-bottom: 50px;">
-                                <iframe id="hastalik_raporu" src="{{ $cocuk->hastalik_raporu_url }}" width="100%" height="500px"></iframe>
+                                <object id="hastalik_raporu" data="{{ $cocuk->hastalik_raporu_url }}" width="100%" height="500px"></object>
                             </div>
                         @else
                             <img id="hastalik_raporu" src="{{ $cocuk->hastalik_raporu_url }}" alt="{{ $cocuk->ad }} Hastalık Raporu">
@@ -227,7 +228,7 @@ function yuzdeRozeti($value)
                         <a href="{{ $cocuk->valilik_izni_url }}" class="mt-4" target="_blank">Valilik İzin Belgesi <i class="fas fa-download"></i></a>
                         @if ($cocuk->valilik_izin_turu == "pdf")
                             <div style="height: 500px;margin-bottom: 50px;">
-                                <iframe id="valilik_izni" src="{{ $cocuk->valilik_izni_url }}" width="100%" height="500px"></iframe>
+                                <object id="valilik_izni" data="{{ $cocuk->valilik_izni_url }}" width="100%" height="500px"></object>
                             </div>
                         @else
                             <img id="valilik_izni" src="{{ $cocuk->valilik_izni_url }}" alt="{{ $cocuk->ad }} Valilik İzni">
