@@ -16,7 +16,7 @@
 //       // (blob, 'my-certification.png');
 //     });
 // }
-
+document.querySelector("#card-form-title").value="";
 let title = document.getElementById("card-form-title")
 let cardTitle = document.getElementById("card-title")
 title.addEventListener("keyup", (event) => {
@@ -29,6 +29,8 @@ function downloadDiv() {
         return;
     }
 
+    document.querySelector("#yukleniyor").removeAttribute("hidden");
+
     let node = document.getElementById('card-container');
     let clone = node.cloneNode(true);
     clone.setAttribute("id", "klonlanmis");
@@ -37,7 +39,7 @@ function downloadDiv() {
     // border: 5px solid black")
     //  padding: 15px; border-image: url('../../images/border.png') 30 stretch;")
     //clone.setAttribute("style",  "border: 20px solid transparent; padding: 15px; border-image: url('/images/border.png') 30 stretch;")
-    clone.children[0].setAttribute("style", "width: 900px; height: 400px;  display: block; margin-left: auto; margin-right: auto;");
+    clone.children[0].setAttribute("style", "width: 720px; height: 480px;  display: block; margin-left: auto; margin-right: auto;");
     clone.children[1].setAttribute("style", "margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; display: block; margin-left: auto; margin-right: auto; width: 150px; height: 150px;");
     clone.children[3].setAttribute("style", "font-size: 25px; text-align:center;");
     clone.children[5].setAttribute("style", "width:100%;font-size: 25px;");
@@ -55,9 +57,11 @@ function downloadDiv() {
         .then(function(dataUrl) {
             downloadURI(dataUrl, "Farkındalık Belgesi.png")
                 //document.body.removeChild(clone)
+                document.querySelector("#yukleniyor").setAttribute("hidden","");
         })
         .catch(function(error) {
             console.error('Hoppp, bir şeyler ters gitti!', error);
+            document.querySelector("#yukleniyor").setAttribute("hidden","");
         });
 
 }
