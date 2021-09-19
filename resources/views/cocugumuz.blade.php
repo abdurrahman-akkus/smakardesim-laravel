@@ -89,6 +89,7 @@ function yuzdeRozeti($value)
                                                     <label for="card-form-title"><b>İsim Soyisim:</b></label>
                                                     <input type="text" id="card-form-title" class="form-control" name="card-form-title" minlength="3" required/>
                                                     <button id="save-button-card" type="button" class="btn btn-primary" onclick="downloadDiv()">Belgeyi İndir</button>
+                                                    <span id="yukleniyor" class="text-primary" hidden>&nbsp;&nbsp;&nbsp;<i id="yukleniyor" class="fas fa-sync-alt fa-spin" ></i> Kart Oluşturuluyor</span>
                                                 </form>
                                             </div>
                                             <div id="card-container" style="position:relative;">
